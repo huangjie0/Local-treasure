@@ -1,18 +1,31 @@
 // pages/home/home.js
 Page({
-
+  // 获取轮播图数据方法
+  getSwiperList(){
+    wx.request({
+      url: 'https://www.escook.cn/slides',
+      method:'GET',
+      success:(res)=>{
+        this.setData({
+          swiperList:res.data
+        })
+      }
+    })
+  },
   /**
    * 页面的初始数据
    */
   data: {
-
+    //存放轮播图数据数组
+    swiperList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    // 页面加载调用方法
+    this.getSwiperList()
   },
 
   /**
