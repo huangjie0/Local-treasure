@@ -31,3 +31,13 @@ swiper image{
   font-size: 24rpx;
   margin-top: 10rpx;
 }
+.img-box{
+  display: flex;
+  padding: 20rpx 10rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.img-box image{
+  width: 45%;
+}
