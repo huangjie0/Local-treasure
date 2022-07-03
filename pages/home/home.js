@@ -12,12 +12,27 @@ Page({
       }
     })
   },
+  //获取九宫格数据的方法
+  getGridList(){
+      wx.request({
+        url: 'https://www.escook.cn/categories',
+        method:'GET',
+        success:(res)=>{
+          console.log(res)
+          this.setData({
+            gridList:res.data
+          })
+        }
+      })
+  },
   /**
    * 页面的初始数据
    */
   data: {
     //存放轮播图数据数组
-    swiperList:[]
+    swiperList:[],
+    //存放九宫格的数据数组
+    gridList:[]
   },
 
   /**
@@ -26,6 +41,7 @@ Page({
   onLoad(options) {
     // 页面加载调用方法
     this.getSwiperList()
+    this.getGridList()
   },
 
   /**
