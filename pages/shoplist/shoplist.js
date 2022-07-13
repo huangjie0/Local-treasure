@@ -1,11 +1,36 @@
 // pages/shoplist/shoplist.js
 Page({
-
+  //获取商品方法
+  getshoplist(){
+    wx.request({
+      url: `https://www.escook.cn/categories/${this.data.query.id}/shops`,
+      method:'GET',
+      data:{
+        _page:this.data.page,
+        _limit:this.data.pagesize
+      },
+      success:(res)=>{
+        //成功的回调函数
+        //将成功的结果保存到shoplist中存储
+        this.setData({
+          shopList:res.data
+        })
+      }
+    })
+  },
   /**
    * 页面的初始数据
    */
   data: {
-    query:{}
+    query:{},
+    //初始化数据
+    shopList:[],
+    // 请求第几页
+    page:1,
+    //一页多少条数据
+    pagesize:10,
+    //总数据
+    total:0
   },
 
   /**
@@ -14,7 +39,8 @@ Page({
   onLoad(options) {
     this.setData({
       query:options
-    })
+    }),
+    this.getshoplist()
   },
 
   /**
