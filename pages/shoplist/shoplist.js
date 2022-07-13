@@ -1,7 +1,7 @@
 // pages/shoplist/shoplist.js
 Page({
   //获取商品方法
-  getshoplist(){
+  getshoplist(cb){
     this.setData({
       //打开节流阀
       isloading:true
@@ -34,6 +34,8 @@ Page({
         this.setData({
           isloading:false
         })
+        // wx.stopPullDownRefresh()
+        cb && cb()
       }
     })
   },
@@ -73,7 +75,7 @@ Page({
       title: this.data.query.title,
     })
   },
-
+  
   /**
    * 生命周期函数--监听页面显示
    */
@@ -106,7 +108,9 @@ Page({
       total:0
     })
     //重新发请求渲染页面
-    this.getshoplist()
+    this.getshoplist(()=>{
+      wx.stopPullDownRefresh()
+    })
   },
 
   /**
