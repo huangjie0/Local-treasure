@@ -21,6 +21,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+    //设置页面标题
     wx.setNavigationBarTitle({
       title: this.data.query.title,
     })
