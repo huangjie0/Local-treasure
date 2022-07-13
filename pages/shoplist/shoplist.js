@@ -99,13 +99,27 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    //重置一些页数
+    this.setData({
+      page:1,
+      shopList:[],
+      total:0
+    })
+    //重新发请求渲染页面
+    this.getshoplist()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
+    if(this.data.page*this.data.pagesize >= this.data.total){
+      //如果没有下一页的数据了
+      return wx.showToast({
+        title: '已经到顶啦！',
+        icon:'none'
+      })
+    }
     if(this.data.isloading) return
     this.setData({
       //让其页码+1
