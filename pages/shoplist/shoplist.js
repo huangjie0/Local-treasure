@@ -1,53 +1,29 @@
-// pages/home/home.js
+// pages/shoplist/shoplist.js
 Page({
-  // 获取轮播图数据方法
-  getSwiperList(){
-    wx.request({
-      url: 'https://www.escook.cn/slides',
-      method:'GET',
-      success:(res)=>{
-        this.setData({
-          swiperList:res.data
-        })
-      }
-    })
-  },
-  //获取九宫格数据的方法
-  getGridList(){
-      wx.request({
-        url: 'https://www.escook.cn/categories',
-        method:'GET',
-        success:(res)=>{
-          this.setData({
-            gridList:res.data
-          })
-        }
-      })
-  },
+
   /**
    * 页面的初始数据
    */
   data: {
-    //存放轮播图数据数组
-    swiperList:[],
-    //存放九宫格的数据数组
-    gridList:[]
+    query:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // 页面加载调用方法
-    this.getSwiperList()
-    this.getGridList()
+    this.setData({
+      query:options
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    wx.setNavigationBarTitle({
+      title: this.data.query.title,
+    })
   },
 
   /**
