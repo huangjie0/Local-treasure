@@ -13,7 +13,9 @@ Page({
         //成功的回调函数
         //将成功的结果保存到shoplist中存储
         this.setData({
-          shopList:res.data
+          shopList:[...this.data.shopList,...res.data],
+          //总数量
+          total:res.header['X-Total-Count'] - 0
         })
       }
     })
